@@ -9,17 +9,11 @@ let captcha = "https://sse3.pajak.go.id/captcha-image";
 function getSession() {
   let cookies;
   return axios
-    .get(url)
-    .then(response => {
-      cookies = response.headers["set-cookie"].map(c => c.split(";")[0]);
-      return axios.get(captcha, {
-        headers: {
-          Cookie: cookies.join(";")
-        },
-        responseType: "stream"
-      });
+    .get(captcha, {
+      responseType: "stream"
     })
     .then(response => {
+      cookies = response.headers["set-cookie"].map(c => c.split(";")[0]);
       const path = Path.resolve("images", cookies[0] + ".jpg");
       const writer = Fs.createWriteStream(path);
       response.data.pipe(writer);
