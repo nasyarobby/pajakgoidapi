@@ -1,7 +1,6 @@
 const axios = require("axios");
 const Fs = require("fs");
 const Path = require("path");
-const prompts = require("prompts");
 const Parser = require("node-html-parser");
 let url = "https://sse3.pajak.go.id/loginPage";
 let captcha = "https://sse3.pajak.go.id/captcha-image";
